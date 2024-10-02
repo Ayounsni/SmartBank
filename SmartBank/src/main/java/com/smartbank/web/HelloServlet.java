@@ -1,4 +1,4 @@
-package com.smartbank.smartbank;
+package com.smartbank.web;
 
 import java.io.*;
 
@@ -19,9 +19,12 @@ public class HelloServlet extends HttpServlet {
         // Hello
         PrintWriter out = response.getWriter();
         out.println("<html><body>");
-        out.println("<h1>" + message + "</h1>");
+        out.println("<h1> kkkk" + message + "</h1>");
+        out.println("<p> oui </p>");
         out.println("</body></html>");
     }
+
+
 
     public void destroy() {
     }
