@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
 
 @Entity
@@ -24,11 +25,11 @@ public class Credit implements Serializable {
     private Long id;
 
     @NotBlank(message = "Le projet ne peut pas être vide")
-    @Column(length = 25) // Limite la longueur à 25 caractères
+    @Column(length = 25)
     private String projet;
 
     @NotBlank(message = "La fonction ne peut pas être vide")
-    @Column(length = 25) // Limite la longueur à 25 caractères
+    @Column(length = 25)
     private String fonction;
 
     @PositiveOrZero(message = "Le montant doit être un nombre entier positif ou zéro")
@@ -52,11 +53,11 @@ public class Credit implements Serializable {
     private Civilite civilite;
 
     @NotBlank(message = "Le nom ne peut pas être vide")
-    @Column(length = 25) // Limite la longueur à 25 caractères
+    @Column(length = 25)
     private String nom;
 
     @NotBlank(message = "Le prénom ne peut pas être vide")
-    @Column(length = 25) // Limite la longueur à 25 caractères
+    @Column(length = 25)
     private String prenom;
 
     @Pattern(regexp = "^[A-Za-z]{2}\\d{5,6}$", message = "Le numéro CIN doit contenir deux lettres suivies de 5 ou 6 chiffres")
@@ -64,11 +65,11 @@ public class Credit implements Serializable {
 
     @NotNull(message = "La date de naissance ne peut pas être vide")
     @Past(message = "La date de naissance doit être dans le passé")
-    private java.util.Date dateNaissance;
+    private LocalDate dateNaissance;
 
     @NotNull(message = "La date d'embauche ne peut pas être vide")
     @PastOrPresent(message = "La date d'embauche doit être aujourd'hui ou dans le passé")
-    private java.util.Date dateEmbauche;
+    private LocalDate dateEmbauche;
 
     @DecimalMin(value = "0.0", inclusive = true, message = "Le revenu doit être un nombre positif")
     @Digits(integer = 10, fraction = 2, message = "Le revenu doit être un nombre avec au maximum deux décimales")
