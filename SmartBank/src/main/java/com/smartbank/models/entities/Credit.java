@@ -21,15 +21,15 @@ import java.time.LocalDate;
 public class Credit implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @NotBlank(message = "Le projet ne peut pas être vide")
-    @Column(length = 25)
+    @Column(length = 50)
     private String projet;
 
     @NotBlank(message = "La fonction ne peut pas être vide")
-    @Column(length = 25)
+    @Column(length = 50)
     private String fonction;
 
     @PositiveOrZero(message = "Le montant doit être un nombre entier positif ou zéro")
@@ -57,7 +57,7 @@ public class Credit implements Serializable {
     private String nom;
 
     @NotBlank(message = "Le prénom ne peut pas être vide")
-    @Column(length = 25)
+    @Column(length = 30)
     private String prenom;
 
     @Pattern(regexp = "^[A-Za-z]{2}\\d{5,6}$", message = "Le numéro CIN doit contenir deux lettres suivies de 5 ou 6 chiffres")
