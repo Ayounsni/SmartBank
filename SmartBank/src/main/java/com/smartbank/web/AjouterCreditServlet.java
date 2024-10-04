@@ -30,9 +30,6 @@ public class AjouterCreditServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String projet = request.getParameter("projet");
         String fonction = request.getParameter("fonction");
-        Long montant = Long.parseLong(request.getParameter("montant"));
-        Long duree = Long.parseLong(request.getParameter("duree"));
-        Double mensualite = Double.parseDouble(request.getParameter("mensualite"));
         String email = request.getParameter("email");
         String telephone = request.getParameter("telephone");
         String civiliteStr = request.getParameter("civilite").toUpperCase();
@@ -40,10 +37,43 @@ public class AjouterCreditServlet extends HttpServlet {
         String nom = request.getParameter("nom");
         String prenom = request.getParameter("prenom");
         String numeroCin = request.getParameter("numeroCin");
-        LocalDate dateNaissance = LocalDate.parse(request.getParameter("dateNaissance"));
-        LocalDate dateEmbauche = LocalDate.parse(request.getParameter("dateEmbauche"));
-        Double revenu = Double.parseDouble(request.getParameter("revenu"));
         boolean creditEncours = request.getParameter("creditEncours") != null;
+        String montantStr = request.getParameter("montant");
+        if (montantStr == null || montantStr.isEmpty()) {
+            response.sendRedirect("index.jsp");
+            return;
+        }
+        Long montant = Long.parseLong(montantStr);
+        String dureeStr = request.getParameter("duree");
+        if (dureeStr == null || dureeStr.isEmpty()) {
+            response.sendRedirect("index.jsp");
+            return;
+        }
+        Long duree = Long.parseLong(dureeStr);
+        String mensualiteStr = request.getParameter("mensualite");
+        if (mensualiteStr == null || mensualiteStr.isEmpty()) {
+            response.sendRedirect("index.jsp");
+            return;
+        }
+        Double mensualite = Double.parseDouble(mensualiteStr);
+        String dateNaissanceStr = request.getParameter("dateNaissance");
+        if (dateNaissanceStr == null || dateNaissanceStr.isEmpty()) {
+            response.sendRedirect("index.jsp");
+            return;
+        }
+        LocalDate dateNaissance = LocalDate.parse(dateNaissanceStr);
+        String dateEmbaucheStr = request.getParameter("dateEmbauche");
+        if (dateEmbaucheStr == null || dateEmbaucheStr.isEmpty()) {
+            response.sendRedirect("index.jsp");
+            return;
+        }
+        LocalDate dateEmbauche = LocalDate.parse(dateEmbaucheStr);
+        String revenuStr = request.getParameter("revenu");
+        if (revenuStr == null || revenuStr.isEmpty()) {
+            response.sendRedirect("index.jsp");
+            return;
+        }
+        Double revenu = Double.parseDouble(revenuStr);
 
         Credit nouveauCredit = new Credit();
         nouveauCredit.setProjet(projet);
@@ -65,8 +95,7 @@ public class AjouterCreditServlet extends HttpServlet {
         Set<ConstraintViolation<Credit>> violations = validator.validate(nouveauCredit);
 
         if (!violations.isEmpty()) {
-            request.setAttribute("violations", violations);
-            request.getRequestDispatcher("/index.jsp").forward(request, response);
+            response.sendRedirect("index.jsp");
             return;
         }
 

@@ -4,5 +4,4 @@ public enum Civilite {
     MONSIEUR,
     MADEMOISELLE,
     MADAME
-
 }
