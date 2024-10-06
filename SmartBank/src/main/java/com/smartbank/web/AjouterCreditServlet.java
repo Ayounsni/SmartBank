@@ -28,49 +28,35 @@ public class AjouterCreditServlet extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String projet = request.getParameter("projet");
-        String fonction = request.getParameter("fonction");
-        String email = request.getParameter("email");
-        String telephone = request.getParameter("telephone");
+        HttpSession session = request.getSession();
+        String projet = (String) session.getAttribute("projet");
+        String fonction = (String) session.getAttribute("fonction");
+        String email = (String) session.getAttribute("email");
+        String telephone = (String) session.getAttribute("telephone");
         String civiliteStr = request.getParameter("civilite").toUpperCase();
         Civilite civilite = Civilite.valueOf(civiliteStr);
         String nom = request.getParameter("nom");
         String prenom = request.getParameter("prenom");
         String numeroCin = request.getParameter("numeroCin");
         boolean creditEncours = request.getParameter("creditEncours") != null;
-        String montantStr = request.getParameter("montant");
-        if (montantStr == null || montantStr.isEmpty()) {
-            response.sendRedirect("index.jsp");
-            return;
-        }
-        Long montant = Long.parseLong(montantStr);
-        String dureeStr = request.getParameter("duree");
-        if (dureeStr == null || dureeStr.isEmpty()) {
-            response.sendRedirect("index.jsp");
-            return;
-        }
-        Long duree = Long.parseLong(dureeStr);
-        String mensualiteStr = request.getParameter("mensualite");
-        if (mensualiteStr == null || mensualiteStr.isEmpty()) {
-            response.sendRedirect("index.jsp");
-            return;
-        }
-        Double mensualite = Double.parseDouble(mensualiteStr);
+        Long montant = (Long) session.getAttribute("montant");
+        Long duree = (Long) session.getAttribute("duree");
+        Double mensualite = (Double) session.getAttribute("mensualite");
         String dateNaissanceStr = request.getParameter("dateNaissance");
         if (dateNaissanceStr == null || dateNaissanceStr.isEmpty()) {
-            response.sendRedirect("index.jsp");
+            response.sendRedirect("form1.jsp");
             return;
         }
         LocalDate dateNaissance = LocalDate.parse(dateNaissanceStr);
         String dateEmbaucheStr = request.getParameter("dateEmbauche");
         if (dateEmbaucheStr == null || dateEmbaucheStr.isEmpty()) {
-            response.sendRedirect("index.jsp");
+            response.sendRedirect("form1.jsp");
             return;
         }
         LocalDate dateEmbauche = LocalDate.parse(dateEmbaucheStr);
         String revenuStr = request.getParameter("revenu");
         if (revenuStr == null || revenuStr.isEmpty()) {
-            response.sendRedirect("index.jsp");
+            response.sendRedirect("form1.jsp");
             return;
         }
         Double revenu = Double.parseDouble(revenuStr);
