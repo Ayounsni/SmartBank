@@ -19,7 +19,7 @@
 <div>
     <div class="margin-x">
         <h1 class="titre-center m-t-lg">Demander mon crédit en ligne</h1>
-        <a class="d-flex gap-5 w-fit m-y-1" href="form1.jsp">
+        <a class="d-flex gap-5 w-fit m-y-1" href="index.jsp">
             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor"
                  class="bi bi-arrow-left" viewBox="0 0 16 16">
                 <path fill-rule="evenodd"

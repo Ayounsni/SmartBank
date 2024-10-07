@@ -2,30 +2,19 @@ package com.smartbank.web;
 
 import com.smartbank.models.entities.Credit;
 import com.smartbank.models.enums.Civilite;
-import com.smartbank.repository.interfaces.CreditRepository;
+import com.smartbank.services.implementations.CreditService;
+import com.smartbank.services.interfaces.ICreditService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
-import jakarta.validation.ConstraintViolation;
-import jakarta.validation.Validation;
-import jakarta.validation.Validator;
-import jakarta.validation.ValidatorFactory;
 
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.Set;
 
 @WebServlet(name = "ajouterCreditServlet", value = "/ajouter-credit")
 public class AjouterCreditServlet extends HttpServlet {
 
-    private final CreditRepository creditRepository = new CreditRepository();
-    private Validator validator;
-
-    @Override
-    public void init() {
-        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
-        validator = factory.getValidator();
-    }
+    private final ICreditService creditService = new CreditService();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
@@ -44,19 +33,19 @@ public class AjouterCreditServlet extends HttpServlet {
         Double mensualite = (Double) session.getAttribute("mensualite");
         String dateNaissanceStr = request.getParameter("dateNaissance");
         if (dateNaissanceStr == null || dateNaissanceStr.isEmpty()) {
-            response.sendRedirect("form1.jsp");
+            response.sendRedirect("index.jsp");
             return;
         }
         LocalDate dateNaissance = LocalDate.parse(dateNaissanceStr);
         String dateEmbaucheStr = request.getParameter("dateEmbauche");
         if (dateEmbaucheStr == null || dateEmbaucheStr.isEmpty()) {
-            response.sendRedirect("form1.jsp");
+            response.sendRedirect("index.jsp");
             return;
         }
         LocalDate dateEmbauche = LocalDate.parse(dateEmbaucheStr);
         String revenuStr = request.getParameter("revenu");
         if (revenuStr == null || revenuStr.isEmpty()) {
-            response.sendRedirect("form1.jsp");
+            response.sendRedirect("index.jsp");
             return;
         }
         Double revenu = Double.parseDouble(revenuStr);
@@ -78,14 +67,11 @@ public class AjouterCreditServlet extends HttpServlet {
         nouveauCredit.setRevenu(revenu);
         nouveauCredit.setCreditEncours(creditEncours);
 
-        Set<ConstraintViolation<Credit>> violations = validator.validate(nouveauCredit);
-
-        if (!violations.isEmpty()) {
+        try {
+            creditService.add(nouveauCredit);
+            response.sendRedirect("succes.jsp");
+        } catch (IllegalArgumentException e) {
             response.sendRedirect("index.jsp");
-            return;
         }
-
-        creditRepository.add(nouveauCredit);
-        response.sendRedirect("succes.jsp");
     }
 }

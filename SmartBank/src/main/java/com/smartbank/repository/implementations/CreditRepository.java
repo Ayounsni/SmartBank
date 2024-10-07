@@ -1,14 +1,16 @@
-package com.smartbank.repository.interfaces;
+package com.smartbank.repository.implementations;
 
 import com.smartbank.config.EntityManagerFactorySingleton;
 import com.smartbank.models.entities.Credit;
+import com.smartbank.repository.interfaces.ICreditRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 
 
-public class CreditRepository {
+public class CreditRepository implements ICreditRepository {
 
-    public void add(Credit credit) {
+    @Override
+    public Credit add(Credit credit) {
         EntityManager em = EntityManagerFactorySingleton.entityManagerFactory().createEntityManager();
         EntityTransaction transaction = em.getTransaction();
 
@@ -24,6 +26,7 @@ public class CreditRepository {
         } finally {
             em.close();
         }
+        return credit;
     }
 
 }
