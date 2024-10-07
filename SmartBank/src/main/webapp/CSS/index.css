@@ -587,3 +587,12 @@ select.minimal:focus {
     border-color: #999999;
     outline: 0;
 }
+.flex-middle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.m-t-11 {
+    margin-top: 150px;
+}

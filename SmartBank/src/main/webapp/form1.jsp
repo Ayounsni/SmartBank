@@ -12,14 +12,14 @@
             href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
             rel="stylesheet">
     <title>Crédit Bancaire</title>
-    <script src="JS/form2.js" defer></script>
+    <script src="JS/form1.js" defer></script>
 </head>
 
 <body class="bg">
 <div>
     <div class="margin-x">
         <h1 class="titre-center m-t-lg">Demander mon crédit en ligne</h1>
-        <a class="d-flex gap-5 w-fit m-y-1" href="form1.jsp">
+        <a class="d-flex gap-5 w-fit m-y-1" href="index.jsp">
             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor"
                  class="bi bi-arrow-left" viewBox="0 0 16 16">
                 <path fill-rule="evenodd"
@@ -27,18 +27,13 @@
             </svg>
             <p class="p-4">Retour</p>
         </a>
-        <div class="flex ">
-            <div class="card w-75 m-b-6 ">
+        <div class="flex">
+            <div class="card w-75 m-b-6">
                 <div class="d-flex justify-b m-b-5 ">
-                    <div class=" w-30 first titre-center white p-y-5 ">
-                        <p class="number">1</p>
-                        <p class="p-1">Simuler mon crédit</p>
-                    </div>
-
-                    <div class="w-30 flexe">
+                    <div class="w-30 flexe ">
                         <div class=" seconde w-100 titre-center color-four p-y-5 ">
-                            <p class="number">2</p>
-                            <p class="p-1">Mes coordonnées</p>
+                            <p class="number">1</p>
+                            <p class="p-1">Simuler mon crédit</p>
                         </div>
                         <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="#FDDF35"
                              class="bi bi-caret-down-fill m-t-0" viewBox="0 0 16 16">
@@ -46,31 +41,62 @@
                                     d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
                         </svg>
                     </div>
+
+                    <div class="w-30 third titre-center p-y-5 white">
+                        <p class="number">2</p>
+                        <p class="p-1">Mes coordonnées</p>
+                    </div>
                     <div class="w-30 third titre-center p-y-5 white">
                         <p class="number">3</p>
                         <p class="p-1">Mes infos personnelles</p>
                     </div>
                 </div>
                 <div class="margin-x-1">
-                    <form  onsubmit="return validateForm()" action="form2" method="post">
-                        <div class="m-t-5 input-container">
-                            <input type="text" name="email" id="email" placeholder="" class="custom-input "
-                                   value="">
-                            <label for="email" class="custom-label  ">Email*</label>
-                        </div>
-                        <div class="m-t-9 input-container">
-                            <input type="tel" name="telephone" id="phone" placeholder=""
-                                   class="custom-input border-bottom" value="">
-                            <label for="phone" id="phoneLabel" class="custom-label color">Téléphone mobile*</label>
+                    <form onsubmit="return validateForm()" action="form1" method="post">
+                        <p class="label">Mon projet</p>
+                        <select class="minimal m-t-1" name="projet">
+                            <option value="J’ai besoin d’argent">J’ai besoin d’argent</option>
+                            <option value="Je finance mon véhicule d’occasion">Je finance mon véhicule d’occasion</option>
+                            <option value="Je Gère mes imprévus">Je Gère mes imprévus</option>
+                            <option value="Je finance mon véhicule neuf">Je finance mon véhicule neuf</option>
+                            <option value="J’équipe ma maison">J’équipe ma maison</option>
+                        </select>
+                        <p class="label m-t-5">Je suis</p>
+                        <select class="minimal m-t-1" name="fonction">
+                            <option value="Salarié du secteur privé">Salarié du secteur privé</option>
+                            <option value="Fonctionnaire">Fonctionnaire</option>
+                            <option value="Profession libérale">Profession libérale</option>
+                            <option value="Commerçant">Commerçant</option>
+                            <option value="Artisan">Artisan</option>
+                            <option value="Retraité">Retraité</option>
+                            <option value="Autres professions">Autres professions</option>
+                        </select>
+
+                        <div class="slider-container ">
+                            <p class="label m-t-5">Montant (en DH)</p>
+                            <input class="input1 w-8" type="number" id="sliderValue" name="montant" step="1" value="5000">
+                            <input type="range" min="5000" max="600000" step="1000" value="5000" class="slider"
+                                   id="mySlider">
+
+                            <p class="label m-t-5">Durée (en mois)</p>
+                            <input class="input1 w-5" type="number" id="durationValue" name="duree" step="1" value="12">
+                            <input type="range" min="12" max="120" step="6" value="12" class="slider"
+                                   id="durationSlider">
+
+                            <p class="label m-t-5">Mensualités (en DH)</p>
+                            <input class="input1 w-9" type="number" id="mensualiteValue" name="mensualite" value="70" step="0.01">
+                            <input type="range" min="1" max="80000" step="100" value="70" class="slider"
+                                   id="mensualiteSlider">
                         </div>
                         <div class="flex-center">
-                            <button type="submit" class="button1 m-t-5">
+                            <button class="button1 m-t-5">
                                 <p class="p-10">Continuer</p>
                                 <p class="p-2">Sans engagement</p>
                             </button>
                         </div>
                     </form>
                 </div>
+
                 <div class="m-t-10">
                     <p class="color-four fs-1">Simulation à titre indicatif et non contractuelle. La mensualité
                         minimale est de 180 dirhams.
@@ -81,31 +107,16 @@
                         au traitement de vos données personnelles. Ce traitement est autorisé par la CNDP sous le
                         numéro
                         A-GC-206/2014.</p>
+
                 </div>
             </div>
             <div class=" card w-20">
                 <p class="titre-center mon color-four">Mon récapitulatif</p>
                 <p class="color-four bg1 ">Mon projet</p>
-                <p class="color-first pret">Prêt Personnel</p>
-                <p class="color-four bg1 ">Détails de mon crédit</p>
-                <div class="data border-b">
-                    <p class="color-four fs2">Vous êtes:</p>
-                    <p class=" color-first fs2 fw"><%= session.getAttribute("projet") %></p>
-                </div>
-                <div class="data border-b">
-                    <p class="color-four fs2">Montant:</p>
-                    <p class=" color-first fs2 fw"><%= session.getAttribute("montant") %> DH</p>
-                </div>
-                <div class="data border-b">
-                    <p class="color-four fs2">Durée:</p>
-                    <p class=" color-first fs2 fw"><%= session.getAttribute("duree") %> mois</p>
-                </div>
-                <div class="data">
-                    <p class="color-four fs2">Mensualité:</p>
-                    <p class=" color-first fs2 fw"><%= session.getAttribute("mensualite") %> DH</p>
-                </div>
+                <p class="color-first pret m-b-9">Prêt Personnel</p>
             </div>
         </div>
+
     </div>
 </div>
 <div id="errorModal" class="modal">

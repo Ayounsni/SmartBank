@@ -33,19 +33,19 @@ public class AjouterCreditServlet extends HttpServlet {
         Double mensualite = (Double) session.getAttribute("mensualite");
         String dateNaissanceStr = request.getParameter("dateNaissance");
         if (dateNaissanceStr == null || dateNaissanceStr.isEmpty()) {
-            response.sendRedirect("index.jsp");
+            response.sendRedirect("form1.jsp");
             return;
         }
         LocalDate dateNaissance = LocalDate.parse(dateNaissanceStr);
         String dateEmbaucheStr = request.getParameter("dateEmbauche");
         if (dateEmbaucheStr == null || dateEmbaucheStr.isEmpty()) {
-            response.sendRedirect("index.jsp");
+            response.sendRedirect("form1.jsp");
             return;
         }
         LocalDate dateEmbauche = LocalDate.parse(dateEmbaucheStr);
         String revenuStr = request.getParameter("revenu");
         if (revenuStr == null || revenuStr.isEmpty()) {
-            response.sendRedirect("index.jsp");
+            response.sendRedirect("form1.jsp");
             return;
         }
         Double revenu = Double.parseDouble(revenuStr);
@@ -71,7 +71,7 @@ public class AjouterCreditServlet extends HttpServlet {
             creditService.add(nouveauCredit);
             response.sendRedirect("succes.jsp");
         } catch (IllegalArgumentException e) {
-            response.sendRedirect("index.jsp");
+            response.sendRedirect("form1.jsp");
         }
     }
 }
