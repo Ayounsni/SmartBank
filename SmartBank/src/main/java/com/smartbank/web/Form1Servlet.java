@@ -29,7 +29,6 @@ public class Form1Servlet extends HttpServlet {
         session.setAttribute("mensualite", mensualite);
 
         response.sendRedirect("form2.jsp");
-
     }
 
 

@@ -9,6 +9,7 @@ import jakarta.validation.Validation;
 import jakarta.validation.Validator;
 import jakarta.validation.ValidatorFactory;
 
+import java.util.List;
 import java.util.Set;
 
 public class CreditService implements ICreditService {
@@ -33,5 +34,10 @@ public class CreditService implements ICreditService {
 
         creditRepository.add(credit);
         return credit;
+    }
+
+    @Override
+    public List<Credit> findAllCredits() {
+        return creditRepository.findAllCredits();
     }
 }

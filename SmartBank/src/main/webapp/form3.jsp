@@ -52,7 +52,7 @@
                     </div>
                 </div>
                 <div class="margin-x-1">
-                    <form id="" onsubmit="return validateForm()" action="ajouter-credit" method="post">
+                    <form id="" onsubmit="return validateForm()" action="allCredit" method="post">
                         <div class="radio-container">
                             <label for="civilite" class="radio-title">Civilité</label>
                             <div class="radio-group" id="civilite">

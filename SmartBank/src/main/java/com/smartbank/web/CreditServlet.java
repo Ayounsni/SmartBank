@@ -10,11 +10,21 @@ import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.List;
 
-@WebServlet(name = "ajouterCreditServlet", value = "/ajouter-credit")
-public class AjouterCreditServlet extends HttpServlet {
+@WebServlet(name = "CreditServlet", value = "/allCredit")
+public class CreditServlet extends HttpServlet {
 
     private final ICreditService creditService = new CreditService();
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        List<Credit> credits = creditService.findAllCredits();
+
+        request.setAttribute("credits", credits);
+
+        request.getRequestDispatcher("allCredit.jsp").forward(request, response);
+    }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
@@ -69,7 +79,8 @@ public class AjouterCreditServlet extends HttpServlet {
 
         try {
             creditService.add(nouveauCredit);
-            response.sendRedirect("succes.jsp");
+            session.setAttribute("flashMessage", "Crédit creer avec succes");
+            response.sendRedirect("allCredit");
         } catch (IllegalArgumentException e) {
             response.sendRedirect("form1.jsp");
         }
