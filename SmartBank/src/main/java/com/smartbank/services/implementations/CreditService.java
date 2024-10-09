@@ -24,7 +24,6 @@ public class CreditService implements ICreditService {
 
     }
 
-
     @Override
     public Credit add(Credit credit) {
         Set<ConstraintViolation<Credit>> violations = validator.validate(credit);
@@ -39,5 +38,13 @@ public class CreditService implements ICreditService {
     @Override
     public List<Credit> findAllCredits() {
         return creditRepository.findAllCredits();
+    }
+
+    @Override
+    public Double calculerMensualite(Long capital, Long dureeEnMois) {
+        double tauxAnnuel = 0.12;
+        double tauxMensuel = tauxAnnuel / 12;
+        double mensualite = (capital * tauxMensuel) / (1 - Math.pow(1 + tauxMensuel, -dureeEnMois));
+        return Math.round(mensualite * 100.0) / 100.0;
     }
 }

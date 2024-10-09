@@ -7,4 +7,5 @@ import java.util.List;
 public interface ICreditService {
     Credit add(Credit credit);
     List<Credit> findAllCredits();
+    Double calculerMensualite(Long capital, Long dureeEnMois);
 }

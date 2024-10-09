@@ -10,6 +10,7 @@ import lombok.Setter;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.List;
 
 
 @Entity
@@ -76,4 +77,7 @@ public class Credit implements Serializable {
     private Double revenu;
 
     private boolean creditEncours;
+
+    @OneToMany(mappedBy = "credit", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    private List<CreditStatus> creditStatus;
 }
