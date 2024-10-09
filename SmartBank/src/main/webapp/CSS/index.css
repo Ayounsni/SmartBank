@@ -757,3 +757,6 @@ select.minimal:focus {
 .progress.active:before {
     width: 0%;
 }
+.over {
+    overflow-x: hidden;
+}

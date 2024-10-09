@@ -17,7 +17,7 @@
     <script src="JS/allCredit.js" defer></script>
 </head>
 
-<body class="bg">
+<body class="bg over">
 <%
     String flashMessage = (String) session.getAttribute("flashMessage");
     if (flashMessage != null) {
