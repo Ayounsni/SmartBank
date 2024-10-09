@@ -19,7 +19,7 @@ public class CreditServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Credit> credits = creditService.findAllCredits();
+        List<Credit> credits = creditService.findAll();
 
         request.setAttribute("credits", credits);
 
@@ -78,7 +78,7 @@ public class CreditServlet extends HttpServlet {
         nouveauCredit.setCreditEncours(creditEncours);
 
         try {
-            creditService.add(nouveauCredit);
+            creditService.persist(nouveauCredit);
             session.setAttribute("flashMessage", "Crédit creer avec succes");
             response.sendRedirect("allCredit");
         } catch (IllegalArgumentException e) {

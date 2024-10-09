@@ -25,19 +25,19 @@ public class CreditService implements ICreditService {
     }
 
     @Override
-    public Credit add(Credit credit) {
+    public Credit persist(Credit credit) {
         Set<ConstraintViolation<Credit>> violations = validator.validate(credit);
         if (!violations.isEmpty()) {
             throw new IllegalArgumentException("Les données du crédit sont invalides : " + violations.toString());
         }
 
-        creditRepository.add(credit);
+        creditRepository.persist(credit);
         return credit;
     }
 
     @Override
-    public List<Credit> findAllCredits() {
-        return creditRepository.findAllCredits();
+    public List<Credit> findAll() {
+        return creditRepository.findAll();
     }
 
     @Override

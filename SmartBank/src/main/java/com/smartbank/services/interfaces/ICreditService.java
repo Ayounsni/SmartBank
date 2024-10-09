@@ -5,7 +5,7 @@ import com.smartbank.models.entities.Credit;
 import java.util.List;
 
 public interface ICreditService {
-    Credit add(Credit credit);
-    List<Credit> findAllCredits();
+    Credit persist(Credit credit);
+    List<Credit> findAll();
     Double calculerMensualite(Long capital, Long dureeEnMois);
 }
