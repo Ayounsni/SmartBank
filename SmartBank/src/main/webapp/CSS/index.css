@@ -518,6 +518,7 @@ input[type=radio]:checked + .custom_field + span {
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    gap:10px;
 }
 
 .p-5 {

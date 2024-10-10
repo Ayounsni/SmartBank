@@ -28,12 +28,14 @@ public class CreditServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Credit> credits = creditService.findAll();
+        List<Status> statuses = statusService.findAll();
 
         request.setAttribute("credits", credits);
+        request.setAttribute("statuses", statuses);
 
         request.getRequestDispatcher("allCredit.jsp").forward(request, response);
     }
-
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         String projet = (String) session.getAttribute("projet");

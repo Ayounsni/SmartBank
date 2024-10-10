@@ -104,7 +104,7 @@
                         <button class="ban-btn" onclick="showModal(${credit.id})">Details</button>
                     </td>
                     <td>
-                        <button class="ban-btn">Modifier Status</button>
+                        <button class="ban-btn" onclick="showForm(${credit.id})">Modifier Status</button>
                     </td>
                 </tr>
 
@@ -147,6 +147,38 @@
                 <p class="p-10">Fermer</p>
             </button>
         </div>
+    </div>
+</div>
+</c:forEach>
+<c:forEach var="credit" items="${credits}">
+<div id="form-${credit.id}" class="modal">
+    <div class="modal-content flexe">
+        <form action="editStatus" method="post" class="flexe w-75" onsubmit="return validateForm(${credit.id})">
+            <div>
+                <h2>Modifier status</h2>
+                <label class="label">Mon projet</label>
+                <select class="minimal m-t-1" name="status">
+                <c:forEach var="statuses" items="${statuses}">
+                    <option name="idStatus" value="${statuses.id}">${statuses.nom}</option>
+                </c:forEach>
+                </select>
+                <div class="m-t-9 input-container">
+                        <textarea name="explication" id="explication-${credit.id}" placeholder="" rows="6" cols="50"
+                                  class="custom-input"></textarea>
+                    <label for="explication-${credit.id}" class="custom-label">Explication*</label>
+                </div>
+                <div id="errorList" class="error-list w-100"></div>
+                <input type="text" name="idCredit" value="${credit.id}" hidden>
+            </div>
+            <div class="flex-end p-5">
+                <button type="submit" class="button3 m-t-4">
+                    <p class="p-10">Modifier</p>
+                </button>
+                <button type="button" class="button3 m-t-4" onclick="closeForm(${credit.id})">
+                    <p class="p-10">Fermer</p>
+                </button>
+            </div>
+        </form>
     </div>
 </div>
 </c:forEach>
