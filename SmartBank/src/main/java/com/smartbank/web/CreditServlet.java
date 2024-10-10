@@ -1,9 +1,15 @@
 package com.smartbank.web;
 
 import com.smartbank.models.entities.Credit;
+import com.smartbank.models.entities.CreditStatus;
+import com.smartbank.models.entities.Status;
 import com.smartbank.models.enums.Civilite;
 import com.smartbank.services.implementations.CreditService;
+import com.smartbank.services.implementations.CreditStatusService;
+import com.smartbank.services.implementations.StatusService;
 import com.smartbank.services.interfaces.ICreditService;
+import com.smartbank.services.interfaces.ICreditStatusService;
+import com.smartbank.services.interfaces.IStatusService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -16,6 +22,8 @@ import java.util.List;
 public class CreditServlet extends HttpServlet {
 
     private final ICreditService creditService = new CreditService();
+    private final ICreditStatusService creditStatusService = new CreditStatusService();
+    private final IStatusService statusService = new StatusService();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -78,7 +86,16 @@ public class CreditServlet extends HttpServlet {
         nouveauCredit.setCreditEncours(creditEncours);
 
         try {
-            creditService.persist(nouveauCredit);
+            Credit newCredit =creditService.persist(nouveauCredit);
+            Status newStatus = statusService.findById(202L);
+            CreditStatus creditStatus = new CreditStatus();
+            creditStatus.setDateStatus(LocalDate.now());
+            creditStatus.setCredit(newCredit);
+            creditStatus.setStatus(newStatus);
+            creditStatus.setExplication("Cette status est definie par défaut aprés la demande du crédit");
+            CreditStatus statusDefault = creditStatusService.persist(creditStatus);
+            nouveauCredit.getCreditStatus().add(statusDefault);
+
             session.setAttribute("flashMessage", "Crédit creer avec succes");
             response.sendRedirect("allCredit");
         } catch (IllegalArgumentException e) {

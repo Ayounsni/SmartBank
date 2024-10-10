@@ -101,12 +101,13 @@
                     <td>${credit.revenu}</td>
                     <td>${credit.creditEncours ? 'Oui' : 'Non'}</td>
                     <td>
-                        <button class="ban-btn" onclick="showModal()">Details</button>
+                        <button class="ban-btn" onclick="showModal(${credit.id})">Details</button>
                     </td>
                     <td>
                         <button class="ban-btn">Modifier Status</button>
                     </td>
                 </tr>
+
             </c:forEach>
         </c:if>
         <c:if test="${empty credits}">
@@ -117,7 +118,8 @@
         </tbody>
     </table>
 </div>
-<div id="modal" class="modal">
+<c:forEach var="credit" items="${credits}">
+<div id="modal-${credit.id}" class="modal">
     <div class="modal-content">
         <div class="table-container h-table">
             <table class="custom-table">
@@ -129,31 +131,24 @@
                 </tr>
                 </thead>
                 <tbody>
+                  <c:forEach var="status" items="${credit.creditStatus}">
                 <tr>
-                    <td>2020-02-27</td>
-                    <td>En attente</td>
-                    <td>j ai car il faut mettre beaucoup d effort pour ne pas etre tres utile dans ton regle de fou mais asse des objet sans </td>
+                    <td>${status.dateStatus}</td>
+                    <td>${status.status.nom}</td>
+                    <td>${status.explication} </td>
                 </tr>
-                <tr>
-                    <td>2020-02-27</td>
-                    <td>En attente</td>
-                    <td>j ai car il faut mettre beaucoup d effort pour ne pas etre tres utile dans ton regle de fou mais asse des objet sans </td>
-                </tr>
-                <tr>
-                    <td>2020-02-27</td>
-                    <td>En attente</td>
-                    <td>j ai car il faut mettre beaucoup d effort pour ne pas etre tres utile dans ton regle de fou mais asse des objet sans </td>
-                </tr>
+                  </c:forEach>
                 </tbody>
             </table>
         </div>
 
         <div class="flex-end p-5">
-            <button type="button" class="button3 m-t-4" onclick="closeModal()">
+            <button type="button" class="button3 m-t-4" onclick="closeModal(${credit.id})">
                 <p class="p-10">Fermer</p>
             </button>
         </div>
     </div>
 </div>
+</c:forEach>
 </body>
 </html>
