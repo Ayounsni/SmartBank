@@ -52,7 +52,7 @@
                     </div>
                 </div>
                 <div class="margin-x-1">
-                    <form id="" onsubmit="return validateForm()" action="allCredit" method="post">
+                    <form onsubmit="return validateForm()" action="allCredit" method="post">
                         <div class="radio-container">
                             <label for="civilite" class="radio-title">Civilité</label>
                             <div class="radio-group" id="civilite">
@@ -106,15 +106,15 @@
                             <label for="revenus" class="custom-label">Total revenus mensuels (net en DH)*</label>
                         </div>
                         <div class="radio-container m-t-4">
-                            <label for="credit" class="radio-title">Avez vous des crédits en cours ?</label>
-                            <div class="radio-group" id="credit">
+                            <label for="creditEncours" class="radio-title">Avez vous des crédits en cours ?</label>
+                            <div class="radio-group" id="creditEncours">
                                 <label class="custom-radio">
-                                    <input type="radio" name="creditEncours" value="true" checked>
+                                    <input type="radio" name="creditEncours" value="true" >
                                     <div class="custom_field"></div>
                                     <span class="fs1 color-four">Oui</span>
                                 </label>
                                 <label class="custom-radio">
-                                    <input type="radio" name="creditEncours" value="false">
+                                    <input type="radio" name="creditEncours" value="false" >
                                     <div class="custom_field"></div>
                                     <span class="fs1 color-four">Non</span>
                                 </label>

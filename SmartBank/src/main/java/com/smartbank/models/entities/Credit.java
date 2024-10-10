@@ -80,5 +80,5 @@ public class Credit implements Serializable {
     private boolean creditEncours;
 
     @OneToMany(mappedBy = "credit", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
-    private List<CreditStatus> creditStatus= new ArrayList<>();;
+    private List<CreditStatus> creditStatus= new ArrayList<>();
 }

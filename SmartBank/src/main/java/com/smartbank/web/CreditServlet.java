@@ -45,7 +45,7 @@ public class CreditServlet extends HttpServlet {
         String nom = request.getParameter("nom");
         String prenom = request.getParameter("prenom");
         String numeroCin = request.getParameter("numeroCin");
-        boolean creditEncours = request.getParameter("creditEncours") != null;
+        boolean creditEncours = Boolean.parseBoolean(request.getParameter("creditEncours"));
         Long montant = (Long) session.getAttribute("montant");
         Long duree = (Long) session.getAttribute("duree");
         Double mensualite = (Double) session.getAttribute("mensualite");
