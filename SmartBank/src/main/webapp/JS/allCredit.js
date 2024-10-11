@@ -2,18 +2,22 @@ function showModal(id) {
     let modal = document.getElementById('modal-'+id);
     modal.style.display = 'block';
 }
+
 function closeModal(id) {
     let modal = document.getElementById('modal-'+id);
     modal.style.display = 'none';
 }
+
 function showForm(id) {
     let modal = document.getElementById('form-'+id);
     modal.style.display = 'block';
 }
+
 function closeForm(id) {
     let modal = document.getElementById('form-'+id);
     modal.style.display = 'none';
 }
+
 const toast = document.querySelector(".toast");
 const progress = document.querySelector(".progress");
 const closeIcon = document.querySelector(".close");
@@ -58,7 +62,7 @@ function validateForm(id) {
     return true;
 
     function showError(errors) {
-        let errorList = document.getElementById('errorList');
+        let errorList = document.getElementById('errorList-'+id);
         errorList.innerHTML = '';
 
         errors.forEach(error => {

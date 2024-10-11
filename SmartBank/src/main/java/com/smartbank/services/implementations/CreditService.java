@@ -4,6 +4,8 @@ import com.smartbank.models.entities.Credit;
 import com.smartbank.repository.implementations.CreditRepository;
 import com.smartbank.repository.interfaces.ICreditRepository;
 import com.smartbank.services.interfaces.ICreditService;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validation;
 import jakarta.validation.Validator;
@@ -11,17 +13,15 @@ import jakarta.validation.ValidatorFactory;
 
 import java.util.List;
 import java.util.Set;
-
+@ApplicationScoped
 public class CreditService implements ICreditService {
-
-    private final ICreditRepository creditRepository;
+    @Inject
+    private ICreditRepository creditRepository;
     private  Validator validator;
 
     public CreditService() {
-        this.creditRepository = new CreditRepository();
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         this.validator = factory.getValidator();
-
     }
 
     @Override
@@ -46,5 +46,10 @@ public class CreditService implements ICreditService {
         double tauxMensuel = tauxAnnuel / 12;
         double mensualite = (capital * tauxMensuel) / (1 - Math.pow(1 + tauxMensuel, -dureeEnMois));
         return Math.round(mensualite * 100.0) / 100.0;
+    }
+
+    @Override
+    public Credit findById(Long id) {
+        return creditRepository.findById(id);
     }
 }

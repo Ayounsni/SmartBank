@@ -5,15 +5,14 @@ import com.smartbank.models.entities.CreditStatus;
 import com.smartbank.repository.implementations.CreditStatusRepository;
 import com.smartbank.repository.interfaces.ICreditStatusRepository;
 import com.smartbank.services.interfaces.ICreditStatusService;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
 
 import java.util.List;
-
+@ApplicationScoped
 public class CreditStatusService implements ICreditStatusService {
-
-    public ICreditStatusRepository creditStatusRepository;
-    public CreditStatusService() {
-        creditStatusRepository = new CreditStatusRepository();
-    }
+    @Inject
+    private ICreditStatusRepository creditStatusRepository;
 
     @Override
     public CreditStatus persist(CreditStatus creditStatus) {

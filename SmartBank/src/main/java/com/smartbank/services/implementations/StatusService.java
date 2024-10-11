@@ -4,16 +4,15 @@ import com.smartbank.models.entities.Status;
 import com.smartbank.repository.implementations.StatusRepository;
 import com.smartbank.repository.interfaces.IStatusRepository;
 import com.smartbank.services.interfaces.IStatusService;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
 
 import java.util.List;
-
+@ApplicationScoped
 public class StatusService implements IStatusService {
+    @Inject
+    private  IStatusRepository statusRepository;
 
-    private final IStatusRepository statusRepository;
-
-    public StatusService() {
-        this.statusRepository = new StatusRepository();
-    }
     @Override
     public Status persist(Status status) {
         return statusRepository.persist(status);

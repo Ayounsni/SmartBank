@@ -157,9 +157,9 @@
             <div>
                 <h2>Modifier status</h2>
                 <label class="label">Mon projet</label>
-                <select class="minimal m-t-1" name="status">
+                <select class="minimal m-t-1" name="idStatus">
                 <c:forEach var="statuses" items="${statuses}">
-                    <option name="idStatus" value="${statuses.id}">${statuses.nom}</option>
+                    <option  value="${statuses.id}">${statuses.nom}</option>
                 </c:forEach>
                 </select>
                 <div class="m-t-9 input-container">
@@ -167,7 +167,7 @@
                                   class="custom-input"></textarea>
                     <label for="explication-${credit.id}" class="custom-label">Explication*</label>
                 </div>
-                <div id="errorList" class="error-list w-100"></div>
+                <div id="errorList-${credit.id}" class="error-list w-100"></div>
                 <input type="text" name="idCredit" value="${credit.id}" hidden>
             </div>
             <div class="flex-end p-5">

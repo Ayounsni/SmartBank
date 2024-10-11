@@ -2,9 +2,10 @@ package com.smartbank.repository.implementations;
 
 import com.smartbank.models.entities.Credit;
 import com.smartbank.repository.interfaces.ICreditRepository;
+import jakarta.enterprise.context.ApplicationScoped;
 
 
-
+@ApplicationScoped
 public class CreditRepository extends GenericRepository<Credit> implements ICreditRepository {
 
     public CreditRepository() {

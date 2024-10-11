@@ -109,7 +109,7 @@
                             <label for="creditEncours" class="radio-title">Avez vous des crédits en cours ?</label>
                             <div class="radio-group" id="creditEncours">
                                 <label class="custom-radio">
-                                    <input type="radio" name="creditEncours" value="true" >
+                                    <input type="radio" name="creditEncours" value="true" checked >
                                     <div class="custom_field"></div>
                                     <span class="fs1 color-four">Oui</span>
                                 </label>

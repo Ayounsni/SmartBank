@@ -10,6 +10,7 @@ import com.smartbank.services.implementations.StatusService;
 import com.smartbank.services.interfaces.ICreditService;
 import com.smartbank.services.interfaces.ICreditStatusService;
 import com.smartbank.services.interfaces.IStatusService;
+import jakarta.inject.Inject;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -20,10 +21,12 @@ import java.util.List;
 
 @WebServlet(name = "CreditServlet", value = "/allCredit")
 public class CreditServlet extends HttpServlet {
-
-    private final ICreditService creditService = new CreditService();
-    private final ICreditStatusService creditStatusService = new CreditStatusService();
-    private final IStatusService statusService = new StatusService();
+    @Inject
+    private ICreditService creditService ;
+    @Inject
+    private  ICreditStatusService creditStatusService ;
+    @Inject
+    private IStatusService statusService ;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
