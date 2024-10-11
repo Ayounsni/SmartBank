@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "credit_status")
@@ -29,7 +29,7 @@ public class CreditStatus implements Serializable {
     @JoinColumn(name = "statusId", nullable = false)
     private Status status;
 
-    private LocalDate dateStatus;
+    private LocalDateTime dateStatus;
 
     @Column(columnDefinition = "TEXT")
     private String explication;

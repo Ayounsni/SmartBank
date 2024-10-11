@@ -17,6 +17,7 @@ import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @WebServlet(name = "CreditServlet", value = "/allCredit")
@@ -92,9 +93,9 @@ public class CreditServlet extends HttpServlet {
 
         try {
             Credit newCredit =creditService.persist(nouveauCredit);
-            Status newStatus = statusService.findById(202L);
+            Status newStatus = statusService.findById(1L);
             CreditStatus creditStatus = new CreditStatus();
-            creditStatus.setDateStatus(LocalDate.now());
+            creditStatus.setDateStatus(LocalDateTime.now());
             creditStatus.setCredit(newCredit);
             creditStatus.setStatus(newStatus);
             creditStatus.setExplication("Cette status est definie par défaut aprés la demande du crédit");

@@ -20,6 +20,7 @@ import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @WebServlet(name = "CreditStatusServlet", value = "/editStatus")
 public class CreditStatusServlet extends HttpServlet {
@@ -44,7 +45,7 @@ public class CreditStatusServlet extends HttpServlet {
         creditStatus.setCredit(newCredit);
         creditStatus.setStatus(newStatus);
         creditStatus.setExplication(explication);
-        creditStatus.setDateStatus(LocalDate.now());
+        creditStatus.setDateStatus(LocalDateTime.now());
 
         CreditStatus listCreditStatus = creditStatusService.persist(creditStatus);
         newCredit.getCreditStatus().add(listCreditStatus);

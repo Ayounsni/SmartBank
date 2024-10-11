@@ -13,7 +13,6 @@
             <property name="jakarta.persistence.jdbc.password" value="0000"/>
             <property name="jakarta.persistence.jdbc.driver" value="org.postgresql.Driver"/>
 
-
             <property name="hibernate.hbm2ddl.auto" value="update"/>
             <property name="hibernate.show_sql" value="true"/>
             <property name="hibernate.format_sql" value="true"/>

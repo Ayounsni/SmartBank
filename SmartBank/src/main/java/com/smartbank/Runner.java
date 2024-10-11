@@ -18,6 +18,18 @@ public class Runner {
 //        EntityManagerFactory entityManagerFactory = EntityManagerFactorySingleton.entityManagerFactory();
 
 //        StatusRepository statusRepository = new StatusRepository();
+//        Status newStatus1 = new Status();
+//        newStatus1.setNom("En attente");
+//        Status newStatus2 = new Status();
+//        newStatus2.setNom("Confirmer");
+//        Status newStatus3 = new Status();
+//        newStatus3.setNom("Rejeter");
+//        Status newStatus4 = new Status();
+//        newStatus4.setNom("Rejeter par le client");
+//        statusRepository.persist(newStatus1);
+//        statusRepository.persist(newStatus2);
+//        statusRepository.persist(newStatus3);
+//        statusRepository.persist(newStatus4);
 //        Status statusNew = statusRepository.findById(52L);
 //        CreditRepository creditRepository = new CreditRepository();
 //        Credit creditNew = creditRepository.findById(1L);
