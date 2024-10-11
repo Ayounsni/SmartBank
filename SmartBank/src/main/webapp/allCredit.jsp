@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="com.smartbank.utils.DateTimeUtil" %>
 
 
 <!DOCTYPE html>
@@ -49,6 +50,16 @@
     }
 %>
 <h1 class="titre-center m-t-10">Tout les crédits avec Wafasalaf !</h1>
+<form action="allCredits" method="get">
+    <label for="status">Filtrer par statut :</label>
+    <select name="statusId" id="status">
+        <option value="">Tous</option>
+        <c:forEach var="status" items="${statuses}">
+            <option value="${status.id}">${status.nom}</option>
+        </c:forEach>
+    </select>
+    <button type="submit">Filtrer</button>
+</form>
 <a class="d-flex gap-5 w-fit m-y-1 retour m-b-1" href="index.jsp">
     <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor"
          class="bi bi-arrow-left" viewBox="0 0 16 16">
@@ -131,9 +142,13 @@
                 </tr>
                 </thead>
                 <tbody>
-                  <c:forEach var="status" items="${credit.creditStatus}">
+                  <c:forEach var="status" items="${credit.creditStatus}" varStatus="loop">
                 <tr>
-                    <td>${status.dateStatus}</td>
+                    <td>${DateTimeUtil.formatLocalDateTime(status.dateStatus, "dd-MM-yyyy  HH:mm")}
+                        <c:if test="${loop.first}">
+                            <p>(statutActuel)</p>
+                        </c:if></td>
+
                     <td>${status.status.nom}</td>
                     <td>${status.explication} </td>
                 </tr>

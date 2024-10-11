@@ -11,6 +11,7 @@ import lombok.Setter;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 
@@ -81,4 +82,9 @@ public class Credit implements Serializable {
 
     @OneToMany(mappedBy = "credit", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
     private List<CreditStatus> creditStatus= new ArrayList<>();
+
+    public List<CreditStatus> getCreditStatus() {
+        creditStatus.sort(Comparator.comparing(CreditStatus::getDateStatus).reversed());
+        return creditStatus;
+    }
 }
