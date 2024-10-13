@@ -80,6 +80,8 @@ public class Credit implements Serializable {
 
     private boolean creditEncours;
 
+    private LocalDate dateCreation;
+
     @OneToMany(mappedBy = "credit", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
     private List<CreditStatus> creditStatus= new ArrayList<>();
 

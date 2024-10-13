@@ -33,5 +33,8 @@ public class CreditStatus implements Serializable {
 
     @Column(columnDefinition = "TEXT")
     private String explication;
+
+    @Column(name = "actif", nullable = false)
+    private boolean actif;
 }
 

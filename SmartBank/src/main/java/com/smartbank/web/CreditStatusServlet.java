@@ -47,6 +47,7 @@ public class CreditStatusServlet extends HttpServlet {
         creditStatus.setStatus(newStatus);
         creditStatus.setExplication(explication);
         creditStatus.setDateStatus(LocalDateTime.now());
+        creditStatus.setActif(true);
 
         if (statusActuel.isPresent()) {
             CreditStatus latestStatus = statusActuel.get();
@@ -54,6 +55,10 @@ public class CreditStatusServlet extends HttpServlet {
                 session.setAttribute("flashMessage", "Le statut n’a pas été modifié, puisqu’il est déjà le même");
                 response.sendRedirect("allCredit");
             } else {
+                CreditStatus oldStatus = creditStatusService.findActiveCreditStatus(newCredit);
+                oldStatus.setActif(false);
+                creditStatusService.merge(oldStatus);
+
                 CreditStatus listCreditStatus = creditStatusService.persist(creditStatus);
                 newCredit.getCreditStatus().add(listCreditStatus);
                 session.setAttribute("flashMessage", "Le status modifier avec succes");

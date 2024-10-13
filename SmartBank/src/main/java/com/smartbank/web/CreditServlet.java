@@ -87,6 +87,7 @@ public class CreditServlet extends HttpServlet {
         nouveauCredit.setDateEmbauche(dateEmbauche);
         nouveauCredit.setRevenu(revenu);
         nouveauCredit.setCreditEncours(creditEncours);
+        nouveauCredit.setDateCreation(LocalDate.now());
 
         try {
             Credit newCredit =creditService.persist(nouveauCredit);
@@ -96,6 +97,7 @@ public class CreditServlet extends HttpServlet {
             creditStatus.setCredit(newCredit);
             creditStatus.setStatus(newStatus);
             creditStatus.setExplication("Cette status est definie par défaut aprés la demande du crédit");
+            creditStatus.setActif(true);
             CreditStatus statusDefault = creditStatusService.persist(creditStatus);
             nouveauCredit.getCreditStatus().add(statusDefault);
 

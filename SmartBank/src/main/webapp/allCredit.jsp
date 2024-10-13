@@ -50,16 +50,6 @@
     }
 %>
 <h1 class="titre-center m-t-10">Tout les crédits avec Wafasalaf !</h1>
-<form action="allCredits" method="get">
-    <label for="status">Filtrer par statut :</label>
-    <select name="statusId" id="status">
-        <option value="">Tous</option>
-        <c:forEach var="status" items="${statuses}">
-            <option value="${status.id}">${status.nom}</option>
-        </c:forEach>
-    </select>
-    <button type="submit">Filtrer</button>
-</form>
 <a class="d-flex gap-5 w-fit m-y-1 retour m-b-1" href="index.jsp">
     <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor"
          class="bi bi-arrow-left" viewBox="0 0 16 16">
@@ -69,22 +59,39 @@
     <p class="p-4">Retour</p>
 </a>
 <div class="table-container">
+    <div class="flex-around">
+        <form action="" class="m-b-1 flex-around">
+            <div>
+            <label class="label">Date</label>
+            <input type="date" class="input2">
+            </div>
+            <div>
+                <label class="label">Status</label>
+                <select name="statusId" id="status">
+                    <option value="">Tous</option>
+                    <c:forEach var="status" items="${statuses}">
+                        <option value="${status.id}">${status.nom}</option>
+                    </c:forEach>
+                </select>
+            </div>
+            <button type="submit" class="button4 ">
+                <p class="p-12">Filtrer</p>
+            </button>
+        </form>
+    </div>
     <table class="custom-table">
         <thead>
         <tr>
-            <th>Civilité</th>
+            <th>Date du demande</th>
             <th>Nom</th>
-            <th>Prenom</th>
             <th>Email</th>
             <th>Telephone</th>
             <th>Numero CIN</th>
             <th>Fonction</th>
-            <th>Date de Naissance</th>
             <th >Projet</th>
             <th>Montant (en DH)</th>
             <th>Durée (en mois)</th>
             <th>Mensualités (en DH)</th>
-            <th>Date d'embauche</th>
             <th>Total revenus mensuels (en DH)</th>
             <th>Crédits en cours</th>
             <th>Status</th>
@@ -96,19 +103,16 @@
         <c:if test="${not empty credits}">
             <c:forEach var="credit" items="${credits}">
                 <tr>
-                    <td>${credit.civilite}</td>
+                    <td>${credit.dateCreation}</td>
                     <td>${credit.nom}</td>
-                    <td>${credit.prenom}</td>
                     <td>${credit.email}</td>
                     <td>${credit.telephone}</td>
                     <td>${credit.numeroCin}</td>
                     <td>${credit.fonction}</td>
-                    <td>${credit.dateNaissance}</td>
                     <td>${credit.projet}</td>
                     <td>${credit.montant}</td>
                     <td>${credit.duree}</td>
                     <td>${credit.mensualite}</td>
-                    <td>${credit.dateEmbauche}</td>
                     <td>${credit.revenu}</td>
                     <td>${credit.creditEncours ? 'Oui' : 'Non'}</td>
                     <td>

@@ -1,6 +1,7 @@
 package com.smartbank.services.implementations;
 
 
+import com.smartbank.models.entities.Credit;
 import com.smartbank.models.entities.CreditStatus;
 import com.smartbank.repository.implementations.CreditStatusRepository;
 import com.smartbank.repository.interfaces.ICreditStatusRepository;
@@ -20,7 +21,11 @@ public class CreditStatusService implements ICreditStatusService {
     }
 
     @Override
-    public List<CreditStatus> findAll() {
-        return creditStatusRepository.findAll();
+    public CreditStatus findActiveCreditStatus(Credit credit){
+        return creditStatusRepository.findActiveCreditStatus(credit);
+    }
+    @Override
+    public CreditStatus merge(CreditStatus creditStatus) {
+        return creditStatusRepository.merge(creditStatus);
     }
 }
