@@ -60,10 +60,10 @@
 </a>
 <div class="table-container">
     <div class="flex-around">
-        <form action="" class="m-b-1 flex-around">
+        <form action="allCredit" method="get" class="m-b-1 flex-around">
             <div>
             <label class="label">Date</label>
-            <input type="date" class="input2">
+            <input type="date" class="input2" name="date">
             </div>
             <div>
                 <label class="label">Status</label>

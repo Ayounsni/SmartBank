@@ -28,7 +28,32 @@ public class CreditServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Credit> credits = creditService.findAll();
+
+        String statusIdParam = request.getParameter("statusId");
+        String dateParam = request.getParameter("date");
+
+        List<Credit> credits;
+
+        if ((statusIdParam != null && !statusIdParam.isEmpty()) && (dateParam != null && !dateParam.isEmpty())) {
+            Long statusId = Long.parseLong(statusIdParam);
+            Status selectedStatus = statusService.findById(statusId);
+            LocalDate selectedDate = LocalDate.parse(dateParam);
+
+            credits = creditService.findCreditsByStatusAndDate(selectedStatus, selectedDate);
+
+        } else if (statusIdParam != null && !statusIdParam.isEmpty()) {
+            Long statusId = Long.parseLong(statusIdParam);
+            Status selectedStatus = statusService.findById(statusId);
+            credits = creditService.findCreditsByStatus(selectedStatus);
+
+        } else if (dateParam != null && !dateParam.isEmpty()) {
+            LocalDate selectedDate = LocalDate.parse(dateParam);
+            credits = creditService.findCreditsByDate(selectedDate);
+
+        } else {
+            credits = creditService.findAll();
+        }
+
         List<Status> statuses = statusService.findAll();
 
         request.setAttribute("credits", credits);
