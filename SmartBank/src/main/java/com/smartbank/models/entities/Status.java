@@ -26,5 +26,10 @@ public class Status implements Serializable {
 
     @OneToMany(mappedBy = "status", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     private List<CreditStatus> creditStatus;
+
+    public Status(Long id, String nom) {
+        this.id = id;
+        this.nom = nom;
+    }
 }
 

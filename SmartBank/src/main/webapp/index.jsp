@@ -15,7 +15,8 @@
 </head>
 
 <body class="bg">
-<div class="flex-middle m-t-11">
+<div class="flex-middle m-t-11 ">
+    <img src="IMG/wafa.png" alt="img" width="300">
     <h1>Demander un crédit avec Wafasalaf, c'est simple !</h1>
     <img src="IMG/credit.png" alt="img" width="950">
 
